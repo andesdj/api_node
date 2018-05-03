@@ -9,10 +9,26 @@ const app= express();
 app.use(bodyParser.urlencoded({extended: false }));
 app.use(bodyParser.json());
 
+app.get('/api/product', (req,res) =>{
+res.send(200, {products:[]}) //array JSON con productos
+});
 
-app.get('/hola/:name', (req,res) =>{
-	res.send({message: `Hola ${req.params.name}!, Como estas?`})
-})
+app.get('/api/product/:productId', (req,res)=> {
+
+});
+
+app.post('/api/product', (req, res)=>{
+	console.log(req.body);
+	res.send(200,{message:'Producto se ha recibido'})
+});
+
+app.put('/api/product/:productId',(req,res)=>{
+
+}) ;
+
+app.delete('/api/product/:productId',(req,res) =>{
+
+});
 
 app.listen(port, ()=> {
 	console.log(`API REST corriendo en localhost, puerto: ${port}`)
