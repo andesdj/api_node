@@ -19,7 +19,7 @@ app.get('/api/product/:productId', (req,res)=> {
 
 app.post('/api/product', (req, res)=>{
 	console.log(req.body);
-	res.send(200,{message:'Producto se ha recibido'})
+	res.status(200).send({message:'Producto se ha recibido V2'})
 });
 
 app.put('/api/product/:productId',(req,res)=>{
