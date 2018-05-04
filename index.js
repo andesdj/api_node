@@ -26,7 +26,6 @@ app.get('/api/product/:productId', (req,res)=> {
 	Product.findById(productId, (err, product)=>{
 			if(err) return res.status.send({message:`Error al realizar la petición ${err}`})
 			if(!product)	 return res.status(404).send({message: `El producto no existe`})
-
 		res.status(200).send({product})
 		console.log(product)
 
@@ -55,10 +54,27 @@ if (err) res.status(500). send({message: `Error al guardar en la base de datos $
 });
 
 app.put('/api/product/:productId',(req,res)=>{
+let productId= req.params.productId
+let update = req.body
+Product.findByIdAndUpdate(productId, update, (err, productUpdated)=>{
+	if(err) res.status(500).send({message: `Error al actualizar el producto ${productId}`})
+	res.status(200).send({product: productUpdated})	
+
+})
+
 
 }) ;
 
 app.delete('/api/product/:productId',(req,res) =>{
+	let productId= req.params.productId	
+	Product.findById(productId, (err, product)=>{
+
+		if(err) res.status(500).send({message: `Error al Borrar el producto ${productId}`})
+		product.remove(err=>{
+			if(err) res.status(500).send({message: `Error al Borrar el producto ${productId}`})
+				res.status(200).send({message: `El producto ha sido eliminado, id: ${productId}` })
+		})
+	})
 
 });
 
