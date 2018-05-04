@@ -1,8 +1,6 @@
 'use strict'
 const mongoose= require('mongoose');
 const Schema= mongoose.Schema;
-
-
 //Creacion del Schema del producto
 const ProductSchema= Schema ({
 
