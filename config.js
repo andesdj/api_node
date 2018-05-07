@@ -1,7 +1,8 @@
 'use strict' //Desde node 6 se pone esto
 module.exports = {
   port : process.env.PORT || 3001,
-  db :   'mongodb://localhost:27017/shop'
+  db :   'mongodb://localhost:27017/shop',
+  SECRET_TOKEN: 'miClaveDeTokens'
 }
 
 //Production cambiar:
