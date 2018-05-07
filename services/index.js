@@ -1,18 +1,15 @@
 'use strict'
-
 const jwt         = require('jwt-simple')
 const moment      = require('moment')
 const config      = require('../config')
-
 function createToken(user){
-    const payload ={
-        sub: user.id,
-        iat: moment().unix() ,
-        exp: moment().add(14, 'days') .unix(),
-    }
+      const payload ={
+          sub: user.id,
+          iat: moment().unix() ,
+          exp: moment().add(20, 'days') .unix(),
+      }
     return jwt.encode(payload, config.SECRET_TOKEN )
 }
-
 function decodeToken(token){
     const decoded =new Promise((resolve, reject)=>{
         try {
@@ -30,10 +27,11 @@ function decodeToken(token){
             status:500,
             message:'Invalid Token'
           })
-
         }
     })
     return decoded
 }
-
-module.exports= createToken
+module.exports= {
+  createToken,
+  decodeToken
+}
